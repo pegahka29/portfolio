@@ -33,6 +33,7 @@ module.exports = configure(function (/* ctx */) {
       'i18n',
       'axios',
       "vazir-font",
+      'quasar-lang-pack'
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -104,7 +105,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {
-        dark:''
+        dark:'auto'
       },
 
       // iconSet: 'material-icons', // Quasar icon set

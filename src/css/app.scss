@@ -2,17 +2,23 @@
 @import 'dark.theme';
 @import 'light.theme';
 
-//html[dir="rtl"],
+html[dir="rtl"],
 html, body {
   font-size: 16px;
   font-family: 'Vazir FD', sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
-//html[dir="ltr"],
-//html[dir="ltr"] body {
-//  font-size: 16px;
-//  font-family: "Poppins", sans-serif;
-//  -webkit-font-smoothing: antialiased;
-//  -webkit-text-size-adjust: 100%;
-//}
+html[dir="ltr"],
+html[dir="ltr"] body {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+html[dir="rtl"] .ltr{
+  direction: rtl !important;
+}
+html[dir="ltr"] .ltr{
+  direction: ltr !important;
+}

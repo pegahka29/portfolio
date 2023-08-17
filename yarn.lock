@@ -2313,6 +2313,13 @@ pinia@^2.0.11:
     "@vue/devtools-api" "^6.5.0"
     vue-demi ">=0.14.5"
 
+postcss-rtlcss@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/postcss-rtlcss/-/postcss-rtlcss-4.0.7.tgz#244f9e9f4360754b85af01b07c9f6d0384c9aa32"
+  integrity sha512-HUh9rtPOrAiPs0uYTebWixSN3PEO6evQ+bj6OmYG59v+pUSPmsfvbIm2VAySvTaHNbURez5beMkCXU/sQz+w0A==
+  dependencies:
+    rtlcss "4.1.0"
+
 postcss-selector-parser@^6.0.13:
   version "6.0.13"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.13.tgz#d05d8d76b1e8e173257ef9d60b706a8e5e99bf1b"
@@ -2326,7 +2333,7 @@ postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@^8.1.10, postcss@^8.4.13, postcss@^8.4.14:
+postcss@^8.1.10, postcss@^8.4.13, postcss@^8.4.14, postcss@^8.4.21:
   version "8.4.28"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.28.tgz#c6cc681ed00109072816e1557f889ef51cf950a5"
   integrity sha512-Z7V5j0cq8oEKyejIKfpD8b4eBy9cwW2JWPk0+fB1HOAMsfHbnAXLLS+PfVWlzMSLQaWttKDt607I0XHmpE67Vw==
@@ -2513,6 +2520,16 @@ rollup-plugin-visualizer@^5.5.4:
   integrity sha512-/qxNTG7FbmefJWoeeYJFbHehJ2HNWnjkAFRKzWN/45eNBBF/r8lo992CwcJXEzyVxs5FmfId+vTSTQDb+bxA+g==
   optionalDependencies:
     fsevents "~2.3.2"
+
+rtlcss@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/rtlcss/-/rtlcss-4.1.0.tgz#f69b78d9752c970ddfe2aa590896f44353ab1c98"
+  integrity sha512-W+N4hh0nVqVrrn3mRkHakxpB+c9cQ4CRT67O39kgA+1DjyhrdsqyCqIuHXyvWaXn4/835n+oX3fYJCi4+G/06A==
+  dependencies:
+    escalade "^3.1.1"
+    picocolors "^1.0.0"
+    postcss "^8.4.21"
+    strip-json-comments "^3.1.1"
 
 run-async@^2.4.0:
   version "2.4.1"

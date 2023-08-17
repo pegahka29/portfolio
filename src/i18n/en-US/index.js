@@ -3,5 +3,9 @@
 
 export default {
   failed: 'Action failed',
-  success: 'Action was successful'
+  success: 'Action was successful',
+  home:'Home',
+  aboutMe:'About',
+  works:'Works',
+  resume:'Resume'
 }
