@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <q-layout view="hHh Lpr lff"  >
+    <q-layout view="lHh Lpr lff"  >
       <q-header class="bg-transparent" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
         <q-toolbar class="flex justify-between items-center">
           <div class="flex justify-lg-start items-center">
@@ -57,13 +57,14 @@
         v-model="drawer"
         :width="200"
         :breakpoint="500"
-        overlay
         bordered
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
       >
         <q-scroll-area class="fit">
-          <q-list>
-
+          <q-list >
+            <q-item  class="flex justify-end items-center">
+              <q-btn round color="red" icon="close"  @click="drawer = false" />
+            </q-item>
             <template v-for="(menuItem, index) in menuItems" :key="index">
               <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
                 <q-item-section avatar>

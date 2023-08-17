@@ -18,6 +18,7 @@ export function useTheme() {
   const toggleTheme = (value) => {
     $q.dark.set(!value);
     localStorage.setItem("dark", JSON.stringify(!value));
+    console.log('d',value)
   };
 
   return { initTheme, toggleTheme }
