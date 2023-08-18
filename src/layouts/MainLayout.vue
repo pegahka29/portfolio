@@ -1,22 +1,16 @@
 <template>
   <div class="q-pa-md">
-    <q-layout view="lHh Lpr lff"  >
+    <q-layout view="lHh Lpr lff">
       <q-header class="bg-transparent" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
         <q-toolbar class="flex justify-between items-center">
-          <div class="flex justify-lg-start items-center">
-            <q-btn v-if="$q.screen.lt.md" flat @click="drawer = !drawer" round dense icon="menu"/>
-            <q-toggle
-              v-model="utilState.appTheme"
-              :color="utilState.appTheme ? 'amber' : 'deep-purple-10'"
-              aria-label="switch-theme-btn"
-              checked-icon="mdi-brightness-7"
-              class="text-blue"
-              keep-color
-              size="lg"
-              unchecked-icon="mdi-weather-night"
-              @update:model-value="toggleTheme"
-            />
-          </div>
+            <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push color="white"
+                   :text-color="$q.dark.isActive ? 'deep-purple-11': 'purple-11' " round icon="menu" class="q-mr-sm"/>
+            <q-btn
+              round
+              push
+              :color="utilState.appTheme?'amber':'deep-purple-11'"
+              :icon="utilState.appTheme ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
+              @click="toggleTheme(utilState.appTheme = ! utilState.appTheme)"/>
           <q-tabs
             v-if="!$q.screen.lt.md"
             v-model="tab"
@@ -33,7 +27,6 @@
           </q-tabs>
           <q-btn-toggle
             v-model="utilState.language"
-            :flat="$q.dark.isActive"
             :options="[
                       { label: 'En', value: 'en-US' },
                       { label: 'Fa', value: 'fa-IR' },
@@ -47,8 +40,8 @@
             rounded
             style="height: 32px;"
             text-color="system-text"
-            toggle-color="green-11"
-            toggle-text-color="system-primary"
+            :toggle-color="$q.dark.isActive ? 'deep-purple-11' :'purple-11'"
+            toggle-text-color="white"
             @update:model-value="changeLanguage"/>
         </q-toolbar>
       </q-header>
@@ -61,9 +54,9 @@
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
       >
         <q-scroll-area class="fit">
-          <q-list >
-            <q-item  class="flex justify-end items-center">
-              <q-btn round color="red" icon="close"  @click="drawer = false" />
+          <q-list>
+            <q-item class="flex justify-end items-center">
+              <q-btn round color="red" glossy icon="close" @click="drawer = false"/>
             </q-item>
             <template v-for="(menuItem, index) in menuItems" :key="index">
               <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
@@ -74,7 +67,7 @@
                   {{ menuItem.label }}
                 </q-item-section>
               </q-item>
-              <q-separator />
+              <q-separator/>
             </template>
 
           </q-list>
