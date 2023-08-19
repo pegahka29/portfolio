@@ -50,8 +50,8 @@
         v-model="drawer"
         :width="200"
         :breakpoint="500"
-        bordered
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+        class="rounded"
+        :style="{background :$q.dark.isActive ? 'linear-gradient(185deg,  #99c396  0%,#6ebac3 100%)' :'linear-gradient(185deg,  #ced2ff  0%,#ffc6ff 100%)'}"
       >
         <q-scroll-area class="fit">
           <q-list>
@@ -59,7 +59,7 @@
               <q-btn round color="red" glossy icon="close" @click="drawer = false"/>
             </q-item>
             <template v-for="(menuItem, index) in menuItems" :key="index">
-              <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
+              <q-item  clickable :active="menuItem.label === 'Outbox'" v-ripple>
                 <q-item-section avatar>
                   <q-icon :name="menuItem.icon"/>
                 </q-item-section>
@@ -140,17 +140,3 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="sass" scoped>
-.mini-slot
-  transition: background-color .28s
-
-  &:hover
-    background-color: rgba(0, 0, 0, .04)
-
-.mini-icon
-  font-size: 1.718em
-  padding: 2px 16px
-
-  & + &
-    margin-top: 18px
-</style>
