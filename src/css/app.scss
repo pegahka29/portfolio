@@ -2,23 +2,53 @@
 @import 'dark.theme';
 @import 'light.theme';
 
+@font-face {
+  font-family: "robotoSlab";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./eng-fonts/RobotoSlab-Medium.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-Regular.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-Black.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-Bold.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-ExtraBold.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-Light.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-SemiBold.ttf") format("ttf"),
+  url("./eng-fonts/RobotoSlab-Thin.ttf") format("ttf");
+  font-display: swap;
+}
+
 html[dir="rtl"],
 html, body {
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'Vazir FD', sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
+
 html[dir="ltr"],
 html[dir="ltr"] body {
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-family: "robotoSlab";
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
-html[dir="rtl"] .ltr{
+
+html[dir="rtl"] .ltr {
   direction: rtl !important;
 }
-html[dir="ltr"] .ltr{
+
+html[dir="ltr"] .ltr {
   direction: ltr !important;
+}
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ea80fc ;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ba33ba;
 }

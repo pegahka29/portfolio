@@ -7,5 +7,9 @@ export default {
   home:'Home',
   aboutMe:'About',
   works:'Works',
-  resume:'Resume'
+  resume:'Resume',
+  loading: 'Loading...',
+  myName: 'Pegah Kazemi',
+  job:'Front-End Developer',
+  downloadResume:'Download Resume'
 }

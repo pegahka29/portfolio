@@ -1,27 +1,29 @@
 <template>
-  <div class="q-pa-md">
+  <div class="">
     <q-layout view="lHh Lpr lff">
-      <q-header class="bg-transparent" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
+      <q-header class="bg-transparent q-pa-sm" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
         <q-toolbar class="flex justify-between items-center">
-            <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push color="white"
-                   :text-color="$q.dark.isActive ? 'deep-purple-11': 'purple-11' " round icon="menu" class="q-mr-sm"/>
-            <q-btn
-              round
-              push
-              :color="utilState.appTheme?'amber':'deep-purple-11'"
-              :icon="utilState.appTheme ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
-              @click="toggleTheme(utilState.appTheme = ! utilState.appTheme)"/>
+          <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push
+                 :color="$q.dark.isActive? 'dark' : 'white'"
+                 :text-color="$q.dark.isActive ? 'deep-purple-11': 'purple-11' " round icon="menu" class="q-mr-sm"/>
+          <q-btn
+            round
+            push
+            :color="utilState.appTheme?'amber':'deep-purple-11'"
+            :icon="utilState.appTheme ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
+            @click="toggleTheme(utilState.appTheme = ! utilState.appTheme)"/>
           <q-tabs
             v-if="!$q.screen.lt.md"
             v-model="tab"
             inline-label
           >
-            <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex' ">
+            <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'">
               <q-tab v-for="menuItem in menuItems"
                      :key="menuItem.name"
                      :name="menuItem.name"
                      :icon="menuItem.icon"
                      :label="menuItem.label"
+                     @click="goToPage(menuItem.to)"
               />
             </div>
           </q-tabs>
@@ -59,7 +61,7 @@
               <q-btn round color="red" glossy icon="close" @click="drawer = false"/>
             </q-item>
             <template v-for="(menuItem, index) in menuItems" :key="index">
-              <q-item  clickable :active="menuItem.label === 'Outbox'" v-ripple>
+              <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple @click="goToPage(menuItem.to)">
                 <q-item-section avatar>
                   <q-icon :name="menuItem.icon"/>
                 </q-item-section>
@@ -69,12 +71,11 @@
               </q-item>
               <q-separator/>
             </template>
-
           </q-list>
         </q-scroll-area>
       </q-drawer>
 
-      <q-page-container>
+      <q-page-container v-if="isLoaded">
         <router-view/>
       </q-page-container>
     </q-layout>
@@ -82,11 +83,13 @@
 </template>
 
 <script>
-import {defineComponent, ref, computed,} from 'vue'
+import {defineComponent, ref, computed, onBeforeUnmount, onMounted} from 'vue'
 import {useTheme} from "/src/composables/theme";
 import {useUtilStore} from "stores/util-store";
 import {useI18n} from "vue-i18n";
 import {useLanguage} from "/src/composables/language";
+import {useRouter} from "vue-router"
+import {useQuasar, QSpinnerHearts} from 'quasar'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -99,35 +102,72 @@ export default defineComponent({
     const tab = ref('home')
     const {t} = useI18n({useScope: "global"});
     const {changeLanguage} = useLanguage();
+    const router = useRouter()
+    const $q = useQuasar()
+    const isLoaded = ref(true)
+    const drawer = ref(false)
+    let timer
+
+    onBeforeUnmount(() => {
+      if (timer !== void 0) {
+        clearTimeout(timer)
+        $q.loading.hide()
+      }
+    })
+    onMounted(() => {
+      router.push('/')
+    })
 
     const menuItems = computed(() => {
       return [
         {
           name: "home",
           label: t("home"),
-          // value: 'Inception',
-          icon: 'home'
+          icon: 'home',
+          to: '/'
         },
         {
           name: "aboutMe",
           label: t("aboutMe"),
-          // value: 'Death Note',
           icon: 'person',
+          to: 'aboutMe'
         },
         {
           name: "works",
           label: t("works"),
-          // value: 'WestWorld, Severance and The big bang theory',
           icon: 'mdi-code-tags',
+          to: ''
         },
         {
           name: "resume",
           label: t("resume"),
-          // value: 'Harry Potter collection',
           icon: 'mdi-file-account',
+          to: ''
         }
       ];
     });
+    const goToPage = (val) => {
+      isLoaded.value = false
+      if(drawer.value === true){
+        drawer.value = false
+      }
+      $q.loading.show({
+        spinner: QSpinnerHearts,
+        spinnerColor: $q.dark.isActive ? 'cyan-14' : 'green-14',
+        spinnerSize: 140,
+        backgroundColor: $q.dark.isActive ? 'purple-10' : 'purple-6',
+        message: t("loading"),
+        messageColor: $q.dark.isActive ? 'white' : 'black'
+      })
+
+      // hiding in 1s
+      timer = setTimeout(() => {
+        $q.loading.hide()
+        timer = void 0
+        isLoaded.value = true
+      }, 1000)
+      router.push(val)
+    }
     return {
       utilState: utilStore.$state,
       toggleTheme,
@@ -135,7 +175,10 @@ export default defineComponent({
       t,
       menuItems,
       changeLanguage,
-      drawer: ref(false),
+      drawer,
+      goToPage,
+      router,
+      isLoaded
     }
   }
 })
