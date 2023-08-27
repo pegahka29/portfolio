@@ -11,5 +11,7 @@ export default {
   loading: 'Loading...',
   myName: 'Pegah Kazemi',
   job:'Front-End Developer',
-  downloadResume:'Download Resume'
+  downloadResume:'Download Resume',
+  whoAmI: 'Who am I?',
+  introduction:'I\'m a passionate Developer who loves to work with colors and styles and always looking for new ways to express my creative side through coding.'
 }

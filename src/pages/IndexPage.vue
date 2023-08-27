@@ -18,14 +18,14 @@
     </q-avatar>
     <span class="text-bold text-h4 q-my-md">{{ t("myName") }}</span>
     <span class="text-bold text-h6 q-mb-md"
-          :class="$q.dark.isActive ? 'text-deep-purple-14' : 'text-pink-13'">{{ t("job") }}</span>
+          :class="$q.dark.isActive ? 'text-white' : 'text-black'">{{ t("job") }}</span>
     <div class="text-center q-mt-sm">
       <q-btn v-for="socialItem in SocialMediaItems" :key="socialItem.name"
              :href="socialItem.link"
              :icon="socialItem.icon"
              :aria-label="socialItem.name + ' link'"
              class="q-pa-xs team-btn relative-position q-mx-sm"
-             :class="$q.dark.isActive ? 'bg-cyan-14' : 'bg-teal-13'"
+             :class="$q.dark.isActive ? 'bg-dark text-teal-13' : 'bg-teal-13'"
              dense
              push
              rounded
@@ -37,7 +37,7 @@
     </div>
     <q-btn :label="t('downloadResume')"
            class="q-mt-xl q-mb-md q-pa-md"
-           :color="$q.dark.isActive ? 'deep-purple-11': 'purple-11'"
+           color="purple-12"
            dense
            push
            rounded

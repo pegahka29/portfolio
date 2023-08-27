@@ -5,11 +5,13 @@
         <q-toolbar class="flex justify-between items-center">
           <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push
                  :color="$q.dark.isActive? 'dark' : 'white'"
-                 :text-color="$q.dark.isActive ? 'deep-purple-11': 'purple-11' " round icon="menu" class="q-mr-sm"/>
+                 text-color="purple-12"
+                round icon="menu" class="q-mr-sm"/>
           <q-btn
             round
             push
-            :color="utilState.appTheme?'amber':'deep-purple-11'"
+            :color="!$q.dark.isActive?'amber':'teal-13'"
+            :class="$q.dark.isActive ? 'text-black' : 'text-white'"
             :icon="utilState.appTheme ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
             @click="toggleTheme(utilState.appTheme = ! utilState.appTheme)"/>
           <q-tabs
@@ -42,7 +44,7 @@
             rounded
             style="height: 32px;"
             text-color="system-text"
-            :toggle-color="$q.dark.isActive ? 'deep-purple-11' :'purple-11'"
+            toggle-color="purple-12"
             toggle-text-color="white"
             @update:model-value="changeLanguage"/>
         </q-toolbar>
@@ -53,7 +55,7 @@
         :width="200"
         :breakpoint="500"
         class="rounded"
-        :style="{background :$q.dark.isActive ? 'linear-gradient(185deg,  #99c396  0%,#6ebac3 100%)' :'linear-gradient(185deg,  #ced2ff  0%,#ffc6ff 100%)'}"
+        :style="{background :$q.dark.isActive ? ' linear-gradient(185deg,  #080E1A  0%,#2a182a 100%)' :'linear-gradient(185deg,  #ced2ff  0%,#ffc6ff 100%)'}"
       >
         <q-scroll-area class="fit">
           <q-list>

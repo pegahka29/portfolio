@@ -1,5 +1,40 @@
 <template>
-  <div>{{ t("aboutMe") }}</div>
+  <div class="q-pa-md">
+    <div class="flex flex-center">
+      <div class="q-pa-md row items-start q-gutter-md">
+        <q-card class="my-card" flat bordered>
+          <q-card-section horizontal>
+            <q-card-section class="q-pt-xs">
+              <div class="text-overline">{{ t("aboutMe")}}</div>
+              <div class="text-h5 q-mt-sm q-mb-xs">{{t("whoAmI")}}🤔</div>
+              <div class="text-caption text-grey">
+                {{t('introduction')}}
+              </div>
+            </q-card-section>
+
+            <q-card-section class="col-5 flex flex-center">
+              <q-img
+                class="rounded-borders"
+                src="~assets/images/aboutPic.jpg"
+              />
+            </q-card-section>
+          </q-card-section>
+
+          <q-separator />
+
+          <q-card-actions>
+            <q-btn flat round icon="event" />
+            <q-btn flat>
+              7:30PM
+            </q-btn>
+            <q-btn flat color="primary">
+              Reserve
+            </q-btn>
+          </q-card-actions>
+        </q-card>
+      </div>
+  </div>
+  </div>
 </template>
 <script>
 import {defineComponent} from 'vue'
@@ -21,6 +56,8 @@ export default defineComponent({
 </script>
 
 
-<style scoped>
-
+<style lang="sass" scoped>
+.my-card
+  //width: 100%
+  //max-width: 600px
 </style>
