@@ -1,91 +1,87 @@
 <template>
-  <div class="">
-    <q-layout view="lHh Lpr lff">
-      <q-header class="bg-transparent q-pa-sm" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
-        <q-toolbar class="flex justify-between items-center">
-          <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push
-                 :color="$q.dark.isActive? 'dark' : 'white'"
-                 text-color="purple-12"
-                round icon="menu" class="q-mr-sm"/>
-          <q-btn
-            round
-            push
-            :color="!$q.dark.isActive?'amber':'teal-13'"
-            :class="$q.dark.isActive ? 'text-black' : 'text-white'"
-            :icon="utilState.appTheme ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
-            @click="toggleTheme(utilState.appTheme = ! utilState.appTheme)"/>
-          <q-tabs
-            v-if="!$q.screen.lt.md"
-            v-model="tab"
-            inline-label
-          >
-            <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'">
-              <q-tab v-for="menuItem in menuItems"
-                     :key="menuItem.name"
-                     :name="menuItem.name"
-                     :icon="menuItem.icon"
-                     :label="menuItem.label"
-                     @click="goToPage(menuItem.to)"
-              />
-            </div>
-          </q-tabs>
-          <q-btn-toggle
-            v-model="utilState.language"
-            :options="[
+  <q-layout view="lHh Lpr lff">
+    <q-header class="bg-transparent q-pa-sm" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
+      <q-toolbar class="flex justify-between items-center">
+        <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push
+               :color="$q.dark.isActive? 'dark' : 'white'"
+               text-color="purple-12"
+               round icon="menu" class="q-mr-sm"/>
+        <q-btn
+          round
+          push
+          :color="!$q.dark.isActive?'amber':'black'"
+          :class="$q.dark.isActive ? 'text-teal-13' : 'text-white'"
+          :icon="utilState.appTheme ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
+          @click="toggleTheme(utilState.appTheme = ! utilState.appTheme)"/>
+        <q-tabs
+          v-if="!$q.screen.lt.md"
+          v-model="tab"
+          inline-label
+        >
+          <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'">
+            <q-tab v-for="menuItem in menuItems"
+                   :key="menuItem.name"
+                   :name="menuItem.name"
+                   :icon="menuItem.icon"
+                   :label="menuItem.label"
+                   @click="goToPage(menuItem.to)"
+            />
+          </div>
+        </q-tabs>
+        <q-btn-toggle
+          v-model="utilState.language"
+          :options="[
                       { label: 'En', value: 'en-US' },
                       { label: 'Fa', value: 'fa-IR' },
                     ]"
-            class="text-bold"
-            color="section"
-            dense
-            glossy
-            no-caps
-            padding="4px 13px"
-            rounded
-            style="height: 32px;"
-            text-color="system-text"
-            toggle-color="purple-12"
-            toggle-text-color="white"
-            @update:model-value="changeLanguage"/>
-        </q-toolbar>
-      </q-header>
-
-      <q-drawer
-        v-model="drawer"
-        :width="200"
-        :breakpoint="500"
-        class="rounded"
-        :style="{background :$q.dark.isActive ? ' linear-gradient(185deg,  #080E1A  0%,#2a182a 100%)' :'linear-gradient(185deg,  #ced2ff  0%,#ffc6ff 100%)'}"
-      >
-        <q-scroll-area class="fit">
-          <q-list>
-            <q-item class="flex justify-end items-center">
-              <q-btn round color="red" glossy icon="close" @click="drawer = false"/>
+          class="text-bold"
+          color="section"
+          dense
+          glossy
+          no-caps
+          padding="4px 13px"
+          rounded
+          style="height: 32px;"
+          text-color="system-text"
+          toggle-color="purple-12"
+          toggle-text-color="white"
+          @update:model-value="changeLanguage"/>
+      </q-toolbar>
+    </q-header>
+    <q-drawer
+      v-model="drawer"
+      :width="200"
+      :breakpoint="500"
+      class="rounded"
+      :style="{background :$q.dark.isActive ? ' linear-gradient(185deg,  #080E1A  0%,#2a182a 100%)' :'linear-gradient(185deg,  #ced2ff  0%,#ffc6ff 100%)'}"
+    >
+      <q-scroll-area class="fit">
+        <q-list>
+          <q-item class="flex justify-end items-center">
+            <q-btn round color="red" glossy icon="close" @click="drawer = false"/>
+          </q-item>
+          <template v-for="(menuItem, index) in menuItems" :key="index">
+            <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple @click="goToPage(menuItem.to)">
+              <q-item-section avatar>
+                <q-icon :name="menuItem.icon"/>
+              </q-item-section>
+              <q-item-section>
+                {{ menuItem.label }}
+              </q-item-section>
             </q-item>
-            <template v-for="(menuItem, index) in menuItems" :key="index">
-              <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple @click="goToPage(menuItem.to)">
-                <q-item-section avatar>
-                  <q-icon :name="menuItem.icon"/>
-                </q-item-section>
-                <q-item-section>
-                  {{ menuItem.label }}
-                </q-item-section>
-              </q-item>
-              <q-separator/>
-            </template>
-          </q-list>
-        </q-scroll-area>
-      </q-drawer>
-
-      <q-page-container v-if="isLoaded">
-        <router-view/>
-      </q-page-container>
-    </q-layout>
-  </div>
+            <q-separator/>
+          </template>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
+    <q-page-container v-if="isLoaded">
+      <router-view/>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import {defineComponent, ref, computed, onBeforeUnmount, onMounted} from 'vue'
+import {defineComponent, ref, computed, onBeforeUnmount} from 'vue'
 import {useTheme} from "/src/composables/theme";
 import {useUtilStore} from "stores/util-store";
 import {useI18n} from "vue-i18n";
@@ -115,9 +111,6 @@ export default defineComponent({
         clearTimeout(timer)
         $q.loading.hide()
       }
-    })
-    onMounted(() => {
-      router.push('/')
     })
 
     const menuItems = computed(() => {
@@ -150,7 +143,7 @@ export default defineComponent({
     });
     const goToPage = (val) => {
       isLoaded.value = false
-      if(drawer.value === true){
+      if (drawer.value === true) {
         drawer.value = false
       }
       $q.loading.show({
