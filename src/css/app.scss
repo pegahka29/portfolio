@@ -40,15 +40,18 @@ html[dir="rtl"] .ltr {
 html[dir="ltr"] .ltr {
   direction: ltr !important;
 }
+
 ::-webkit-scrollbar {
   width: 11px;
   height: 11px;
 }
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ea80fc ;
+  background: #ea80fc;
   border-radius: 8px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #ba33ba;
 }

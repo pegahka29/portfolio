@@ -18,7 +18,7 @@
           v-model="tab"
           inline-label
         >
-          <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'">
+          <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'" >
             <q-tab v-for="menuItem in menuItems"
                    :key="menuItem.name"
                    :name="menuItem.name"
@@ -111,8 +111,8 @@ export default defineComponent({
         clearTimeout(timer)
         $q.loading.hide()
       }
+      const btn =  document.querySelector('q-btn')
     })
-
     const menuItems = computed(() => {
       return [
         {
