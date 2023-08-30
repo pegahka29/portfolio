@@ -1,6 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lff">
-    <q-header class="bg-transparent q-pa-sm" :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
+    <q-header class=" q-pa-sm"
+              :class="[$q.dark.isActive ? 'text-white' : 'text-dark', scY >=25 ? 'sticky shadow-1' : 'bg-transparent']"
+              :style="{background : $q.dark.isActive && scY >=25 ? ' linear-gradient(68deg,  #2a182a  0%,#080E1A 100%)' :'linear-gradient(68deg,  #ced2ff  0%,#ffc6ff 100%)'}">
       <q-toolbar class="flex justify-between items-center">
         <q-btn v-if="$q.screen.lt.md" @click="drawer = !drawer" push
                :color="$q.dark.isActive? 'dark' : 'white'"
@@ -18,7 +20,7 @@
           v-model="tab"
           inline-label
         >
-          <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'" >
+          <div :class="utilState.language === 'en-US' ? 'row reverse' :'flex'">
             <q-tab v-for="menuItem in menuItems"
                    :key="menuItem.name"
                    :name="menuItem.name"
@@ -81,7 +83,7 @@
 </template>
 
 <script>
-import {defineComponent, ref, computed, onBeforeUnmount} from 'vue'
+import {defineComponent, ref, computed, onBeforeUnmount, onMounted} from 'vue'
 import {useTheme} from "/src/composables/theme";
 import {useUtilStore} from "stores/util-store";
 import {useI18n} from "vue-i18n";
@@ -104,6 +106,8 @@ export default defineComponent({
     const $q = useQuasar()
     const isLoaded = ref(true)
     const drawer = ref(false)
+    const scTimer = ref(0)
+    const scY = ref(0)
     let timer
 
     onBeforeUnmount(() => {
@@ -111,8 +115,19 @@ export default defineComponent({
         clearTimeout(timer)
         $q.loading.hide()
       }
-      const btn =  document.querySelector('q-btn')
     })
+    onMounted(() => {
+      window.addEventListener('scroll', handleScroll)
+    })
+    const handleScroll = () => {
+      if (scTimer.value) return;
+      scTimer.value = setTimeout(() => {
+        scY.value = window.scrollY;
+        clearTimeout(scTimer.value);
+        scTimer.value = 0;
+      }, 100);
+    }
+
     const menuItems = computed(() => {
       return [
         {
@@ -173,8 +188,15 @@ export default defineComponent({
       drawer,
       goToPage,
       router,
-      isLoaded
+      isLoaded,
+      scTimer,
+      scY
     }
   }
 })
 </script>
+<style>
+.scroll {
+  position: sticky;
+}
+</style>

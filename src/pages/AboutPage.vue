@@ -6,7 +6,6 @@
           <q-card-section horizontal>
             <q-card-section class="q-pt-xs">
               <div class="text-overline">{{ t("aboutMe")}}</div>
-              <div class="text-h5 q-mt-sm q-mb-xs">{{t("whoAmI")}}🤔</div>
               <div class="text-caption text-grey">
                 {{t('introduction')}}
               </div>
@@ -54,10 +53,3 @@ export default defineComponent({
   }
 })
 </script>
-
-
-<style lang="sass" scoped>
-.my-card
-  //width: 100%
-  //max-width: 600px
-</style>
