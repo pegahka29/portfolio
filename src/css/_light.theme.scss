@@ -1,5 +1,12 @@
-body.body--light {
-  //background-image: url("../assets/bg-light.jpg");
-background-size: cover;
-background-position: center;
+.body--light {
+  .about::after {
+    position: absolute;
+    top: 50%;
+    height: 0.125rem;
+    border-radius: 0.375rem;
+    background-image: linear-gradient(to right, #bdb2ff, #4438a9 );
+    content: '';
+    width: 2rem;
+    margin-left: 5px;
+  }
 }

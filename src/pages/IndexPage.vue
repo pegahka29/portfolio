@@ -13,7 +13,7 @@
              push
              rounded
              :target="socialItem.target">
-        <q-tooltip v-if="socialItem.hover" class="text-section text-body2 ltr" :offset="[10, 10]" :class="$q.dark.isActive ? 'bg-dark text-white' :'bg-white text-dark'">
+        <q-tooltip v-if="socialItem.hover" class="text-section text-body2" :offset="[10, 10]" :class="$q.dark.isActive ? 'bg-dark text-white' :'bg-white text-dark'">
           {{ socialItem.hover }}
         </q-tooltip>
       </q-btn>

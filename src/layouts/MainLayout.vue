@@ -156,7 +156,7 @@ export default defineComponent({
         },
         {
           name: "aboutMe",
-          label: t("aboutMe"),
+          label: t("about"),
           icon: 'person',
           to: 'aboutMe'
         },
@@ -213,8 +213,3 @@ export default defineComponent({
   }
 })
 </script>
-<style>
-.scroll {
-  position: sticky;
-}
-</style>
