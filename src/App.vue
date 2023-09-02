@@ -145,19 +145,27 @@ export default defineComponent({
     const darkOption = {...baseOption, particles: {...darkTheme}}
     const lightOption = {...baseOption, particles: {...lightTheme}}
     const particlesInit = async engine => {
-      await loadFull(engine);
+      await loadFull(engine)
     };
+
     onMounted(() => {
       router.push('/')
       document.addEventListener("mousemove", (event) => {
-        const element = document.getElementById("app");
-        elementCoordinates.value = getElementCoordinates(event, element);
-        let cursorTracker = document.getElementById('cursor-tracker');
-        let left = elementCoordinates.value.x;
-        let top = elementCoordinates.value.y;
+        const element = document.getElementById("app")
+        elementCoordinates.value = getElementCoordinates(event, element)
+        let cursorTracker = document.getElementById('cursor-tracker')
+        let left = elementCoordinates.value.x
+        let top = elementCoordinates.value.y
         if (cursorTracker && cursorTracker.style) {
-          cursorTracker.style.left = left - 10 + 'px';
-          cursorTracker.style.top = top - 10 + 'px';
+          if (left <= 10) {
+            cursorTracker.style.display = "none"
+            cursorTracker.style.top = top  + 'px'
+            cursorTracker.style.left = left  + 'px'
+          } else {
+            cursorTracker.style.display = "flex"
+            cursorTracker.style.left = left - 10 + 'px'
+            cursorTracker.style.top = top - 10 + 'px'
+          }
           if ($q.dark.isActive) {
             let colors = [
               "#9bf6ff",

@@ -1,21 +1,4 @@
 <template>
-  <q-page class="flex column flex-center">
-    <q-avatar :size="$q.screen.lt.md ?'200px' : '300px'">
-      <q-img
-        v-if="$q.dark.isActive"
-        alt="profile picture of Pegaah"
-        class="avatar"
-        fit="contain"
-        src="~assets/images/dark-profile.jpg"
-      />
-      <q-img
-        v-else
-        alt="profile picture of Pegaah"
-        class="avatar"
-        fit="contain"
-        src="~assets/images/light-profile.jpg"
-      />
-    </q-avatar>
     <span class="text-bold text-h4 q-my-md">{{ t("myName") }}</span>
     <span class="text-bold text-h6 q-mb-md"
           :class="$q.dark.isActive ? 'text-white' : 'text-black'">{{ t("job") }}</span>
@@ -44,7 +27,6 @@
            icon="mdi-cloud-download"
            href="Pegah Kazemi Resume.pdf"
            download/>
-  </q-page>
 </template>
 
 <script>

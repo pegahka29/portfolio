@@ -77,7 +77,25 @@
       </q-scroll-area>
     </q-drawer>
     <q-page-container v-if="isLoaded">
+      <q-page class="flex column flex-center">
+        <q-avatar :size="$q.screen.lt.md ?'200px' : '300px'">
+          <q-img
+            v-if="$q.dark.isActive"
+            alt="profile picture of Pegaah"
+            class="avatar"
+            fit="contain"
+            src="~assets/images/dark-profile.jpg"
+          />
+          <q-img
+            v-else
+            alt="profile picture of Pegaah"
+            class="avatar"
+            fit="contain"
+            src="~assets/images/light-profile.jpg"
+          />
+        </q-avatar>
       <router-view/>
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>
