@@ -140,10 +140,10 @@ export default defineComponent({
     const handleScroll = () => {
       if (scTimer.value) return;
       scTimer.value = setTimeout(() => {
-        scY.value = window.scrollY;
-        clearTimeout(scTimer.value);
-        scTimer.value = 0;
-      }, 100);
+        scY.value = window.scrollY
+        clearTimeout(scTimer.value)
+        scTimer.value = 0
+      }, 100)
     }
 
     const menuItems = computed(() => {
@@ -161,18 +161,18 @@ export default defineComponent({
           to: 'aboutMe'
         },
         {
+          name: "resume",
+          label: t("resume"),
+          icon: 'mdi-file-account',
+          to: 'resume'
+        },
+        {
           name: "works",
           label: t("works"),
           icon: 'mdi-code-tags',
           to: ''
-        },
-        {
-          name: "resume",
-          label: t("resume"),
-          icon: 'mdi-file-account',
-          to: ''
         }
-      ];
+      ]
     });
     const goToPage = (val) => {
       isLoaded.value = false

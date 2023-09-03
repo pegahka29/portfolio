@@ -55,3 +55,6 @@ html[dir="ltr"] .ltr {
 ::-webkit-scrollbar-thumb:hover {
   background: #ba33ba;
 }
+::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}

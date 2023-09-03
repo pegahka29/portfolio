@@ -1,23 +1,26 @@
 <template>
   <div class="q-pa-md">
-    <div class="q-pa-md row items-start q-gutter-md row  justify-center items-center">
+    <div class="q-pa-md items-start q-gutter-md row justify-center">
       <q-card class="q-pa-md col-md-6 col-sm-8 col-12">
         <q-card-section>
           <div class="text-h6 text-bold relative-position about">{{ t("aboutMe") }}</div>
           <div class="text-subtitle2">{{ t("introduction") }}</div>
           <div class="text-h6 text-bold relative-position about q-mt-sm">{{ t("personalInfo") }}</div>
-              <q-btn v-for="personal in personalInfos" :key="personal.name"
-                     :href="personal.link"
-                     :icon="personal.icon"
-                     :label="personal.label"
-                     class="q-pa-sm  q-mt-sm q-mr-sm flex column  items-start  justify-center "
-                     style="width: 100%"
-                     flat
-                     rounded>
-                <q-tooltip v-if="personal.hover" class="text-section text-body2 " :offset="[10, 10]" :class="$q.dark.isActive ? 'bg-dark text-white' :'bg-white text-dark'">
-                  {{ personal.hover }}
-                </q-tooltip>
-              </q-btn>
+          <q-btn v-for="personal in personalInfos" :key="personal.name"
+                 :href="personal.link"
+                 :icon="personal.icon"
+                 :label="personal.label"
+                 class="q-pa-sm  q-mt-sm q-mr-sm flex column  items-start  justify-center "
+                 style="width: 100%"
+                 flat
+                 rounded>
+            <q-tooltip v-if="personal.hover" class="text-section text-body2"
+                       transition-show="scale"
+                       transition-hide="scale" :offset="[10, 10]"
+                       :class="$q.dark.isActive ? 'bg-deep-purple-14 text-white' :'bg-purple-3 text-dark'">
+              {{ personal.hover }}
+            </q-tooltip>
+          </q-btn>
         </q-card-section>
       </q-card>
     </div>
@@ -46,18 +49,18 @@ export default defineComponent({
           link: 'mailto:pegika327@gmail.com',
           icon: 'mdi-gmail',
           target: '_self',
-          label:'pegika327@gmail.com'
+          label: 'pegika327@gmail.com'
         },
         {
           name: 'phone',
           link: 'tel:+989981379329',
           icon: 'mdi-phone',
           target: '_self',
-          label:'0989981379329'
+          label: '09981379329'
         },
         {
-          label:t("birthday"),
-          hover: myAge + ' ' +t("year") ,
+          label: t("birthday"),
+          hover: myAge + ' ' + t("year"),
           name: 'birthday',
           icon: 'mdi-calendar',
         },
