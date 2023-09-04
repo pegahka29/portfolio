@@ -22,5 +22,19 @@ export default {
   associateDegreeCollege: "دانشکده فنی و حرفه ای دخترانه ولیعصر",
   bachelorDegree: "لیسانس-مهندسی نرم افزار",
   bachelorDegreeDate: "11/1401",
-  bachelorDegreeCollege: "دانشکده فنی و حرفه ای دخترانه شریعتی"
+  bachelorDegreeCollege: "دانشکده فنی و حرفه ای دخترانه شریعتی",
+  company: "شرکت اندیشه هوشمند رایان پارسی",
+  startWorking: "1400/06 - مشغول به کار",
+  jobLocation: "تهران",
+  fieldOfActivity: "حوزه فعالیت",
+  companyDesc: "فناوری اطلاعات در پرداخت الکترونیک",
+  AchievementsOrTasks: "دستاوردها و وظایف",
+  tasks: {
+    task1: "توسعه و همکاری  در بهبود رابط کاربری/تجربه کاربری (UI/UX) پروژه صفحه پروفایل فروشگاه پوشاک Application Progressive Web (PWA)  با استفاده از Nuxt.js، BootstrapVue و Mock json-server. ",
+    task2: "توسعه یک برنامه تمرین ورزش برنامه Application Progressive Web (PWA) با استفاده از Nuxt.js، Tailwind CSS، Vuex و Mock json-server.",
+    task3: "همکاری در توسعه وب سایت جدید رایان پارسی با استفاده از Gulp.js، Bootstrap و SCSS.",
+    task4: " توسعه و ایجاد یک وب سایت فروش بیمه با استفاده از Nuxt.js، Tailwind CSS، Vuex، Mock json-server و Lottie",
+    task5: "کمک به بهبود رابط کاربری/تجربه کاربری (UI/UX)  و توسعه صفحه پروفایل کاربر برای AVAPay، یک برنامه کاربردی در زمینه پرداخت الکترونیکی \n",
+    task6: "توسعه یک برنامه وب برای پردازش فروش بازی و اجرای پرداخت های درون برنامه ای با استفاده از Pinia، Nuxt3.js، Bootstrap و SCSS."
+  }
 }

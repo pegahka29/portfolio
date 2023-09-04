@@ -27,5 +27,19 @@ export default {
   associateDegreeCollege: "Valiasr Technical and Vocational University",
   bachelorDegree: "Bachelor-Software engineering",
   bachelorDegreeDate: "02/2022",
-  bachelorDegreeCollege: "Shariati Technical and Vocational College"
+  bachelorDegreeCollege: "Shariati Technical and Vocational College",
+  company: "Rayan Parsi Company",
+  startWorking: "09/2021 - present",
+  jobLocation: "Tehran",
+  fieldOfActivity: "Field of activity",
+  companyDesc: "Information Technology at Electronic Payment",
+  AchievementsOrTasks: "Achievements and Tasks",
+  tasks: {
+    task1: "Developed the Progressive Web Application (PWA) clothing store profile page and collaborated on improving the User Interface/User Experience (UI/UX) of the project using Nuxt.js, BootstrapVue and Mock json-server.",
+    task2: "Developed a Progressive Web App (PWA) training workout application using Nuxt.js, Tailwind CSS, Vuex and Mock json-server.",
+    task3: "Contributed to the development of the new RayanParsi website using Gulp.js, Bootstrap and SCSS.",
+    task4: "Developed an insurance sales website using Nuxt.js, Tailwind CSS, Vuex, Mock json-server and Lottie.",
+    task5: "Contributed to the development of the user profile page for AVAPay(is an application in the field of electronic payment) and improved its UI/UX.",
+    task6: "Developing a web application for processing game sales and executing in-app payments using Pinia, Nuxt3.js, Bootstrap and SCSS.",
+  }
 }

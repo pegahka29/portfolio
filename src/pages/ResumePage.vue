@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md ">
-<!--    //full-width-->
+    <!--    //full-width-->
     <q-tabs
 
       v-model="tab"
@@ -12,23 +12,40 @@
       <q-card class="col-12 q-px-md resume-card q-pb-lg q-pt-md">
         <q-card-section>
           <div
-               class="text-h6 text-bold relative-position about">
+            class="text-h6 text-bold relative-position about">
             {{ tab === 'experience' ? t("myExperience") : t("myEducation") }}
           </div>
           <q-timeline v-if="tab === 'experience'" color="secondary">
-            <q-timeline-entry icon="mdi-laptop-mac" color="purple-12">
+            <q-timeline-entry v-for="e in experience" :key="e.title" :icon="e.icon" color="purple-12">
               <template v-slot:title>
-                Event Title
+                {{ e.title }}
               </template>
               <template v-slot:subtitle>
-                February 21, 1986
+                {{ e.subtitle }}
               </template>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+              <div class="flex column">
+                <a class="text-subtitle2" href="http://rayanparsi.com/"  :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
+                  <q-icon name="mdi-office-building"/>
+                  {{ e.company }}
+                </a>
+                <span class="text-subtitle2 q-my-sm">
+                  <q-icon name="mdi-pin"/>
+                  {{ e.location }}
+                </span>
+                <span class="text-subtitle2 q-mb-sm">
+               {{ t("fieldOfActivity") }}: {{ e.companyDesc }}
+              </span>
+                <q-separator/>
+                <span class="text-subtitle2 q-mt-sm">
+              <q-icon name="mdi-medal-outline"/>   {{ t("AchievementsOrTasks") }}:
+              </span>
+                <ul>
+                  <li v-for="item in e.tasks" :key="item.title" class="text-subtitle2 text-bold q-my-md tasks"
+                      :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-10'"> {{
+                      t(item.title)
+                    }}
+                  </li>
+                </ul>
               </div>
             </q-timeline-entry>
           </q-timeline>
@@ -92,12 +109,45 @@ export default defineComponent({
         }
       ]
     })
+    const experience = computed(() => {
+      return [
+        {
+          title: t("job"),
+          subtitle: t("startWorking"),
+          company: t("company"),
+          location: t("jobLocation"),
+          companyDesc: t("companyDesc"),
+          tasks: [
+            {
+              title: "tasks.task1",
+            },
+            {
+              title: "tasks.task2",
+            },
+            {
+              title: "tasks.task3",
+            },
+            {
+              title: "tasks.task4",
+            },
+            {
+              title: "tasks.task5",
+            },
+            {
+              title: "tasks.task6",
+            },
+          ],
+          icon: "mdi-laptop-mac"
+        },
+      ]
+    })
 
     return {
       t,
       tabs,
       tab,
-      education
+      education,
+      experience
     }
   }
 })
@@ -117,5 +167,12 @@ export default defineComponent({
 .resume-card {
   overflow-y: scroll;
   height: 280px;
+}
+
+.tasks {
+  font-family: "Vazir FD" !important;
+}
+a{
+  text-decoration: none;
 }
 </style>
