@@ -36,5 +36,12 @@ export default {
     task4: " توسعه و ایجاد یک وب سایت فروش بیمه با استفاده از Nuxt.js، Tailwind CSS، Vuex، Mock json-server و Lottie",
     task5: "کمک به بهبود رابط کاربری/تجربه کاربری (UI/UX)  و توسعه صفحه پروفایل کاربر برای AVAPay، یک برنامه کاربردی در زمینه پرداخت الکترونیکی \n",
     task6: "توسعه یک برنامه وب برای پردازش فروش بازی و اجرای پرداخت های درون برنامه ای با استفاده از Pinia، Nuxt3.js، Bootstrap و SCSS."
-  }
+  },
+  years: "سال",
+  interShipJobTitle: "کارآموزی برنامه نویسی Front-End",
+  interShipTasks:{
+    task1:"کسب مهارت دانش و تجربه در HTML, CSS, SCSS, Vue, Nuxt.js در حین کار به عنوان یک کار آموز  برنامه نویسی Front-End"
+  },
+  internShipStarted:"04/1400 - 06/1400",
+  skills:"مهارت ها"
 }

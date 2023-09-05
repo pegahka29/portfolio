@@ -1,30 +1,32 @@
 <template>
-  <div class="q-pa-md ">
-    <!--    //full-width-->
+  <div class="q-pa-md full-width">
     <q-tabs
-
       v-model="tab"
       indicator-color="purple-12"
     >
       <q-tab v-for="i in tabs" :key="i.name" :name="i.name" :icon="i.icon" :label="i.label"/>
     </q-tabs>
     <div class="items-start q-pa-md q-gutter-md row justify-center">
-      <q-card class="col-12 q-px-md resume-card q-pb-lg q-pt-md">
+      <q-card class="col-md-6 col-sm-8 col-12 q-px-md resume-card q-pb-lg q-pt-md">
         <q-card-section>
           <div
             class="text-h6 text-bold relative-position about">
             {{ tab === 'experience' ? t("myExperience") : t("myEducation") }}
           </div>
           <q-timeline v-if="tab === 'experience'" color="secondary">
-            <q-timeline-entry v-for="e in experience" :key="e.title" :icon="e.icon" color="purple-12">
+            <q-timeline-entry v-for="e in experiences" :key="e.id" :icon="e.icon" color="purple-12">
               <template v-slot:title>
                 {{ e.title }}
               </template>
               <template v-slot:subtitle>
                 {{ e.subtitle }}
+                <span v-if="e.id === 1">
+                  (+{{ myExperience }}{{ t("years") }})
+              </span>
               </template>
               <div class="flex column">
-                <a class="text-subtitle2" href="http://rayanparsi.com/"  :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
+                <a class="text-subtitle2" href="http://rayanparsi.com/"
+                   :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
                   <q-icon name="mdi-office-building"/>
                   {{ e.company }}
                 </a>
@@ -35,6 +37,13 @@
                 <span class="text-subtitle2 q-mb-sm">
                {{ t("fieldOfActivity") }}: {{ e.companyDesc }}
               </span>
+                <div v-if="e.id === 1 && $q.screen.gt.sm" class="flex">
+                  <span class="text-subtitle2">
+                    {{t("skills")}}:
+                  </span>
+                  <q-chip v-for="skill in e.skills" :key="skill.id" color="purple-12" text-color="white"
+                          :label="skill.title"/>
+                </div>
                 <q-separator/>
                 <span class="text-subtitle2 q-mt-sm">
               <q-icon name="mdi-medal-outline"/>   {{ t("AchievementsOrTasks") }}:
@@ -71,6 +80,9 @@
 import {computed, defineComponent, ref} from 'vue'
 import {useI18n} from "vue-i18n"
 import {useQuasar} from 'quasar'
+
+const year = new Date().getFullYear()
+const myExperience = year - 2021
 
 export default defineComponent({
   name: 'ResumePage',
@@ -109,9 +121,10 @@ export default defineComponent({
         }
       ]
     })
-    const experience = computed(() => {
+    const experiences = computed(() => {
       return [
         {
+          id: 1,
           title: t("job"),
           subtitle: t("startWorking"),
           company: t("company"),
@@ -137,17 +150,136 @@ export default defineComponent({
               title: "tasks.task6",
             },
           ],
+          skills: [
+            {
+              id: 1,
+              title: "HTML"
+            },
+            {
+              id: 2,
+              title: "CSS"
+            },
+            {
+              id: 3,
+              title: "SCSS"
+            },
+            {
+              id: 4,
+              title: "Javascript"
+            },
+            {
+              id: 5,
+              title: "Vue.js"
+            },
+            {
+              id: 6,
+              title: "Nuxt.js"
+            },
+            {
+              id: 7,
+              title: "Quasar Framework"
+            },
+            {
+              id: 8,
+              title: "Pinia"
+            },
+            {
+              id: 9,
+              title: "Vuex"
+            },
+            {
+              id: 10,
+              title: "Mock json-server"
+            },
+            {
+              id: 11,
+              title: "Gulp.js"
+            },
+            {
+              id: 12,
+              title: "BootstrapVue"
+            },
+            {
+              id: 13,
+              title: "Git"
+            },
+            {
+              id: 14,
+              title: "PWA"
+            },
+            {
+              id: 15,
+              title: "SPA"
+            },
+            {
+              id: 16,
+              title: "TFS"
+            },
+            {
+              id: 17,
+              title: "Lottie"
+            },
+            {
+              id: 18,
+              title: "Tailwind CSS"
+            },
+            {
+              id: 19,
+              title: "Bootstrap"
+            },
+          ],
+          icon: "mdi-laptop-mac"
+        },
+        {
+          id: 2,
+          title: t("interShipJobTitle"),
+          subtitle: t("internShipStarted"),
+          company: t("company"),
+          location: t("jobLocation"),
+          companyDesc: t("companyDesc"),
+          tasks: [
+            {
+              title: "interShipTasks.task1",
+            },
+          ],
           icon: "mdi-laptop-mac"
         },
       ]
     })
-
+    const personalProjects = computed(() => {
+      return [
+        {
+          tasks: [
+            {
+              title: "tasks.task1",
+            },
+            {
+              title: "tasks.task2",
+            },
+            {
+              title: "tasks.task3",
+            },
+            {
+              title: "tasks.task4",
+            },
+            {
+              title: "tasks.task5",
+            },
+            {
+              title: "tasks.task6",
+            },
+          ],
+        }
+      ]
+    })
     return {
       t,
       tabs,
       tab,
       education,
-      experience
+      experiences,
+      myExperience,
+      personalProjects
     }
   }
 })
@@ -172,7 +304,8 @@ export default defineComponent({
 .tasks {
   font-family: "Vazir FD" !important;
 }
-a{
+
+a {
   text-decoration: none;
 }
 </style>

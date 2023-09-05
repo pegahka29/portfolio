@@ -41,5 +41,12 @@ export default {
     task4: "Developed an insurance sales website using Nuxt.js, Tailwind CSS, Vuex, Mock json-server and Lottie.",
     task5: "Contributed to the development of the user profile page for AVAPay(is an application in the field of electronic payment) and improved its UI/UX.",
     task6: "Developing a web application for processing game sales and executing in-app payments using Pinia, Nuxt3.js, Bootstrap and SCSS.",
-  }
+  },
+  interShipTasks: {
+    task1: "Acquired knowledge and skills in HTML, CSS, SCSS, JavaScript, Vue.js and Nuxt.js while working as an intern Front-End developer."
+  },
+  years: "years",
+  interShipJobTitle: "Intern Front-End Developer",
+  internShipStarted:"07/2021 - 09/2021",
+  skills: "Skills",
 }
