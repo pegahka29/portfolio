@@ -1,5 +1,5 @@
 .body--dark {
-  .about::after {
+  .custom-card::after {
     position: absolute;
     top: 50%;
     height: 0.125rem;
@@ -8,5 +8,8 @@
     content: '';
     width: 2rem;
     margin-left: 5px;
+  }
+  .q-card::after {
+visibility: hidden;
   }
 }

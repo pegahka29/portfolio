@@ -7,72 +7,70 @@
       <q-tab v-for="i in tabs" :key="i.name" :name="i.name" :icon="i.icon" :label="i.label"/>
     </q-tabs>
     <div class="items-start q-pa-md q-gutter-md row justify-center">
-      <q-card class="col-md-6 col-sm-8 col-12 q-px-md resume-card q-pb-lg q-pt-md">
-        <q-card-section>
-          <div
-            class="text-h6 text-bold relative-position about">
-            {{ tab === 'experience' ? t("myExperience") : t("myEducation") }}
-          </div>
-          <q-timeline v-if="tab === 'experience'" color="secondary">
-            <q-timeline-entry v-for="e in experiences" :key="e.id" :icon="e.icon" color="purple-12">
-              <template v-slot:title>
-                {{ e.title }}
-              </template>
-              <template v-slot:subtitle>
-                {{ e.subtitle }}
-                <span v-if="e.id === 1">
+     <custom-card>
+         <div
+           class="text-h6 text-bold relative-position custom-card">
+           {{ tab === 'experience' ? t("myExperience") : t("myEducation") }}
+         </div>
+         <q-timeline v-if="tab === 'experience'" color="secondary">
+           <q-timeline-entry v-for="e in experiences" :key="e.id" :icon="e.icon" color="purple-12">
+             <template v-slot:title>
+               {{ e.title }}
+             </template>
+             <template v-slot:subtitle>
+               {{ e.subtitle }}
+               <span v-if="e.id === 1">
                   (+{{ myExperience }}{{ t("years") }})
               </span>
-              </template>
-              <div class="flex column">
-                <a class="text-subtitle2" href="http://rayanparsi.com/"
-                   :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
-                  <q-icon name="mdi-office-building"/>
-                  {{ e.company }}
-                </a>
-                <span class="text-subtitle2 q-my-sm">
+             </template>
+             <div class="flex column">
+               <a class="text-subtitle2" href="http://rayanparsi.com/"
+                  :class="$q.dark.isActive ? 'text-white' : 'text-dark'">
+                 <q-icon name="mdi-office-building"/>
+                 {{ e.company }}
+               </a>
+               <span class="text-subtitle2 q-my-sm">
                   <q-icon name="mdi-pin"/>
                   {{ e.location }}
                 </span>
-                <span class="text-subtitle2 q-mb-sm">
+               <span class="text-subtitle2 q-mb-sm">
                {{ t("fieldOfActivity") }}: {{ e.companyDesc }}
               </span>
-                <div v-if="e.id === 1 && $q.screen.gt.sm" class="flex">
+               <div v-if="e.id === 1 && $q.screen.gt.sm" class="flex">
                   <span class="text-subtitle2">
                     {{t("skills")}}:
                   </span>
-                  <q-chip v-for="skill in e.skills" :key="skill.id" color="purple-12" text-color="white"
-                          :label="skill.title"/>
-                </div>
-                <q-separator/>
-                <span class="text-subtitle2 q-mt-sm">
+                 <q-chip v-for="skill in e.skills" :key="skill.id" color="purple-12" text-color="white"
+                         :label="skill.title"/>
+               </div>
+               <q-separator/>
+               <span class="text-subtitle2 q-mt-sm">
               <q-icon name="mdi-medal-outline"/>   {{ t("AchievementsOrTasks") }}:
               </span>
-                <ul>
-                  <li v-for="item in e.tasks" :key="item.title" class="text-subtitle2 text-bold q-my-md tasks"
-                      :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-10'"> {{
-                      t(item.title)
-                    }}
-                  </li>
-                </ul>
-              </div>
-            </q-timeline-entry>
-          </q-timeline>
-          <q-timeline v-else color="secondary">
-            <q-timeline-entry v-for="e in education" :key="e.title" :icon="e.icon" color="purple-12">
-              <template v-slot:title>
-                {{ e.title }}
-              </template>
-              <template v-slot:subtitle>
-                {{ e.subtitle }}
-              </template>
-              <div>
-                {{ e.desc }}
-              </div>
-            </q-timeline-entry>
-          </q-timeline>
-        </q-card-section>
-      </q-card>
+               <ul>
+                 <li v-for="item in e.tasks" :key="item.title" class="text-subtitle2 text-bold q-my-md tasks"
+                     :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-10'"> {{
+                     t(item.title)
+                   }}
+                 </li>
+               </ul>
+             </div>
+           </q-timeline-entry>
+         </q-timeline>
+         <q-timeline v-else color="secondary">
+           <q-timeline-entry v-for="e in education" :key="e.title" :icon="e.icon" color="purple-12">
+             <template v-slot:title>
+               {{ e.title }}
+             </template>
+             <template v-slot:subtitle>
+               {{ e.subtitle }}
+             </template>
+             <div>
+               {{ e.desc }}
+             </div>
+           </q-timeline-entry>
+         </q-timeline>
+     </custom-card>
     </div>
   </div>
 </template>
@@ -80,12 +78,14 @@
 import {computed, defineComponent, ref} from 'vue'
 import {useI18n} from "vue-i18n"
 import {useQuasar} from 'quasar'
+import CustomCard from "components/CustomCard.vue";
 
 const year = new Date().getFullYear()
 const myExperience = year - 2021
 
 export default defineComponent({
   name: 'ResumePage',
+  components: {CustomCard},
 
   setup() {
     const {t} = useI18n({useScope: "global"})
@@ -298,7 +298,7 @@ export default defineComponent({
 
 .resume-card {
   overflow-y: scroll;
-  height: 280px;
+  height: 300px;
 }
 
 .tasks {
