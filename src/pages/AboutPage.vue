@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <div class="q-pa-md items-start q-gutter-md row justify-center ">
-      <card>
+      <CustomCard>
         <div class="text-h6 text-bold relative-position custom-card">{{ t("about") }}</div>
         <div class="text-subtitle2">{{ t("introduction") }}</div>
         <div class="text-h6 text-bold relative-position custom-card q-mt-sm">{{ t("personalInfo") }}</div>
@@ -20,7 +20,7 @@
             {{ personal.hover }}
           </q-tooltip>
         </q-btn>
-      </card>
+      </CustomCard>
     </div>
   </div>
 </template>
@@ -28,16 +28,16 @@
 import {computed, defineComponent} from 'vue'
 import {useI18n} from "vue-i18n"
 import {useUtilStore} from "stores/util-store"
+import CustomCard from "components/CustomCard.vue";
 
 
 export default defineComponent({
   name: 'AboutMe',
-  components: {Card},
+  components: {CustomCard},
 
   setup() {
     const {t} = useI18n({useScope: "global"})
     const utilStore = useUtilStore();
-
 
     const year = new Date().getFullYear()
     const myAge = year - 2000

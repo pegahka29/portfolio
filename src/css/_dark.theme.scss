@@ -10,6 +10,7 @@
     margin-left: 5px;
   }
   .q-card::after {
-visibility: hidden;
+   visibility: hidden;
+    height: 0 !important;
   }
 }
